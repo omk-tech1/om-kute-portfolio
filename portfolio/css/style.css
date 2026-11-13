@@ -246,6 +246,14 @@ main { position: relative; z-index: 1; }
 .js .reveal.in { opacity: 1; transform: none; }
 @keyframes failShow { to { opacity: 1; transform: none; } }
 @keyframes up { from { opacity: 0; transform: translateY(28px); } }
+@keyframes brightHeroIn {
+  from { opacity: 0; clip-path: inset(5% 0 5%); transform: translateY(20px); }
+  to { opacity: 1; clip-path: inset(0); transform: translateY(0); }
+}
+@keyframes brightArtSettle {
+  from { transform: scale(1.025); }
+  to { transform: scale(1); }
+}
 @keyframes spin { to { rotate: 360deg; } }
 @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes pulse { 0%, 100% { opacity: 0.75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
@@ -626,6 +634,14 @@ html[data-theme="bright"] .hero .name {
 html[data-theme="bright"] .hero .cta { margin-top: 18px; }
 html[data-theme="bright"] .hdr-in { box-shadow: 0 8px 26px rgba(32, 63, 105, 0.08); }
 html[data-theme="bright"] .hdr-cta { color: var(--blue-2); }
+html[data-theme="bright"] .bright-hero-art { animation: brightHeroIn 0.9s var(--ease) both; }
+html[data-theme="bright"] .bright-hero-art img { animation: brightArtSettle 1.4s var(--ease) both; }
+html[data-theme="bright"].js .reveal {
+  transform: translate3d(0, 26px, 0);
+  filter: blur(3px);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease), filter 0.75s var(--ease);
+}
+html[data-theme="bright"].js .reveal.in { transform: none; filter: none; }
 
 /* ---------- Motion off (toggle, or the visitor's reduced-motion setting) ---------- */
 html.motion-off { scroll-behavior: auto; }
@@ -641,6 +657,7 @@ html.motion-off { scroll-behavior: auto; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
+  html[data-theme="bright"].js .reveal { filter: none !important; }
   .curtain { display: none; }
   .tilt, .tilt:hover { transform: none; }
 }
