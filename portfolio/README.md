@@ -29,7 +29,7 @@ Built with plain HTML, CSS and JavaScript. No frameworks, no build step, no depe
 ## Animations and interactions
 
 - Intro curtain wipe and letter-by-letter name reveal
-- Glowing neural-network particle background that reacts to the mouse
+- Lightweight neural-network particle background that reacts to the mouse in dark mode
 - Parallax portrait (mouse and scroll)
 - Scroll-triggered section reveals and a scroll progress bar
 - Skills ticker, count-up statistics, animated timeline and progress ring
@@ -38,6 +38,7 @@ Built with plain HTML, CSS and JavaScript. No frameworks, no build step, no depe
 - Compact `D` / `B` header button toggles dark and bright themes; the preference is saved when browser storage is available and the toggle still works without it
 - Bright mode uses the supplied portrait-oriented mobile hero artwork and wide desktop artwork; dark mode retains its original animated portrait hero
 - Bright mode adds a gentle artwork entrance and polished section-by-section scroll reveals; all added motion honors reduced-motion preferences
+- The particle background pauses in bright mode and runs at a reduced frame rate to limit unnecessary rendering work
 - Responsive skill cards, two-column contact panel on larger screens, and stacked mobile layout
 - Animations switch off automatically for visitors who enable "reduce motion" in their device settings
 - No cookies or session storage are used; the theme preference is stored in local storage when available, and the page remains usable if browser privacy settings block storage, the decorative canvas, or optional remote fonts

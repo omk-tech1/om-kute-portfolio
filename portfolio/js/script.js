@@ -86,6 +86,7 @@
     var nodes = [], packets = [];
     var mouse = { x: -9999, y: -9999 };
     var raf = 0, last = 0, spawnIn = 0.4;
+    var frameInterval = 1000 / 30;
     var sprite = makeSprite();
 
     function makeSprite() {
@@ -135,7 +136,7 @@
       cv.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       link = W < 700 ? 110 : 150;
-      var target = clamp(Math.round((W * H) / 17000), 26, 88);
+      var target = clamp(Math.round((W * H) / 30000), 16, 56);
       if (!nodes.length || widthChanged) { build(target); }
       draw();
     }
@@ -212,14 +213,16 @@
 
     function frame(t) {
       raf = window.requestAnimationFrame(frame);
-      var dt = Math.min(0.05, (t - last) / 1000 || 0.016);
+      var elapsed = t - last;
+      if (elapsed < frameInterval) { return; }
+      var dt = Math.min(0.05, elapsed / 1000 || 0.016);
       last = t;
       step(dt);
       draw();
     }
 
     function start() {
-      if (raf || document.hidden) { return; }
+      if (raf || document.hidden || !motionOn || root.getAttribute('data-theme') === 'bright') { return; }
       last = performance.now();
       raf = window.requestAnimationFrame(frame);
     }
@@ -253,8 +256,16 @@
   })();
 
   motionHooks.push(function (on) {
-    if (on) { Net.start(); } else { Net.stop(); Net.redraw(); }
+    if (on && root.getAttribute('data-theme') !== 'bright') { Net.start(); }
+    else { Net.stop(); Net.redraw(); }
   });
+  var themeToggle = $('[data-theme-toggle]');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      if (root.getAttribute('data-theme') === 'bright') { Net.stop(); Net.redraw(); }
+      else if (motionOn) { Net.start(); }
+    });
+  }
 
   /* ------------------------------------------------------------------ *
    * Count-up statistics (verified numbers only)

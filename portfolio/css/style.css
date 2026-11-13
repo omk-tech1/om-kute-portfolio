@@ -638,10 +638,9 @@ html[data-theme="bright"] .bright-hero-art { animation: brightHeroIn 0.9s var(--
 html[data-theme="bright"] .bright-hero-art img { animation: brightArtSettle 1.4s var(--ease) both; }
 html[data-theme="bright"].js .reveal {
   transform: translate3d(0, 26px, 0);
-  filter: blur(3px);
-  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease), filter 0.75s var(--ease);
+  transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
 }
-html[data-theme="bright"].js .reveal.in { transform: none; filter: none; }
+html[data-theme="bright"].js .reveal.in { transform: none; }
 
 /* ---------- Motion off (toggle, or the visitor's reduced-motion setting) ---------- */
 html.motion-off { scroll-behavior: auto; }
